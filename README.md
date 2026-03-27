@@ -1,60 +1,179 @@
-# 🍌 BANANA Market
+<div align="center">
 
-> **바나나 껍질보다 매끄러운 상품 필터링**  
-> AI 이미지 라벨링 기반의 신뢰할 수 있는 중고거래 플랫폼
+<img src="assets/logo.png" alt="BANANA Market" width="120" />
 
----
-## Team Members
-| 이름   | 소속                     | 
-|--------|--------------------------|
-|👩🏻‍💻 박기람 | 한양대 정보시스템학과 22학번 | 
-|👨🏻‍💻 김한준 | 카이스트 전산학부 21학번     | 
+<h3><b>BANANA Market</b></h3>
+<p><b>A secondhand marketplace that blocks fraudulent listings before they go live.</b></p>
 
----
+<p>
+  <a href="#features"><strong>Features</strong></a> ·
+  <a href="#tech-stack"><strong>Tech Stack</strong></a> ·
+  <a href="#getting-started"><strong>Getting Started</strong></a> ·
+  <a href="#screenshots"><strong>Screenshots</strong></a>
+</p>
 
-## 프로젝트 소개
+<p>
 
-**BANANA Market**은 중고거래 플랫폼에서 자주 발생하는  
-허위 게시물, 부적절한 이미지 업로드 문제를 해결하기 위해 **Google ML Kit 이미지 라벨링** 기술을 도입한 앱입니다.
+[![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B?logo=flutter)](https://flutter.dev)
+[![Dart](https://img.shields.io/badge/Dart-3.7-0175C2?logo=dart)](https://dart.dev)
+[![Firebase](https://img.shields.io/badge/Firebase-cloud-FFCA28?logo=firebase&logoColor=black)](https://firebase.google.com)
+[![MadCamp](https://img.shields.io/badge/MadCamp-Week%201-yellow)](https://madcamp.io)
 
-판매자가 상품을 등록할 때,  
-**입력한 태그와 업로드한 이미지의 실제 내용이 일치하지 않으면 등록이 제한**됩니다.  
-이를 통해 **거래의 신뢰성과 품질을 높이고**, 사용자 경험을 향상시키는 것이 목표입니다.
+</p>
 
----
-
-## 🧩 핵심 기능
-
-- **AI 이미지 필터링 (Google ML Kit)**  
-  - 상품 등록 시, 이미지 라벨링 결과와 태그가 일치하지 않으면 등록 차단
-  
-  ![Image](https://github.com/user-attachments/assets/2bb70e80-af5b-4818-822e-7f4f375deb42)
-
-
-- **상품 상세 페이지**  
-  - 태그, 상세설명, 이미지 등  상품 정보 입력
-
-  <img width="1179" height="2556" alt="Image" src="https://github.com/user-attachments/assets/b1160c66-093b-425f-8da6-3d93a87cce10" />
-
-
-- **구매 페이지**  
-  - 배송지, 결제수단, 배송방법 선택  
-  - 총 결제 금액 확인 및 주문 확정 가능
-
-  ![Image](https://github.com/user-attachments/assets/964f5146-85ae-4219-8248-b47ac48373fc)
-
-- **좋아요 기능**  
-  - 관심 상품 저장 및 관리
-
-  ![Image](https://github.com/user-attachments/assets/24f0c15a-2669-41a9-bace-470df0e3215f)
-
-- **마이페이지**  
-  - 사용자 정보 확인, 거래 내역, 로그아웃 등 기본 설정
-  
-  ![Image](https://github.com/user-attachments/assets/186a75d7-9361-44d8-a07d-d68df1b5c553)
+</div>
 
 ---
 
-### APK 다운로드 링크
+## What & Why
+
+BANANA Market is a Flutter app built during **MadCamp Week 1** that tackles a core trust problem in peer-to-peer commerce: sellers uploading images that have nothing to do with the item they're listing.
+
+When a seller posts a product, **Google ML Kit analyzes every uploaded image** and compares the detected labels against the seller's chosen tags. If they don't match, the listing is rejected — before any buyer ever sees it.
+
+> [!NOTE]
+> This project is a fork of [banana-madcamp/banana](https://github.com/banana-madcamp/banana), developed as a one-week intensive at MadCamp.
+
 ---
-https://drive.google.com/file/d/1n4rfwgsRB4VU2vwcM1BsFHFFxoXC_52x/view?usp=share_link
+
+## Features
+
+<details>
+<summary><b>AI-Powered Fraud Prevention</b></summary>
+
+- Runs **Google ML Kit image labeling** on every uploaded photo at listing creation time
+- Uses a 50% confidence threshold to filter low-quality label matches
+- Blocks submission if image labels do not overlap with the seller's declared tags
+- Validates each image in a listing independently
+
+</details>
+
+<details>
+<summary><b>Product Listings</b></summary>
+
+- Upload photos and short videos per product
+- Attach searchable tags, title, description, price, and pickup location
+- Tag autocomplete via a searchable dialog
+- Skeleton loading states while images fetch
+
+</details>
+
+<details>
+<summary><b>Browsing & Discovery</b></summary>
+
+- Home feed with cached network images for fast scrolling
+- Filter listings by tag
+- Location-aware listing display
+
+</details>
+
+<details>
+<summary><b>Checkout Flow</b></summary>
+
+- Select delivery method (pickup / courier)
+- Choose payment method
+- Review total and confirm order
+
+</details>
+
+<details>
+<summary><b>User Account</b></summary>
+
+- Email sign-up and sign-in via Firebase Auth
+- Secure token storage with flutter_secure_storage
+- Wishlist / favorites management
+- Profile page with transaction history and logout
+
+</details>
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| UI Framework | [Flutter](https://flutter.dev) |
+| Language | [Dart](https://dart.dev) 3.7 |
+| State Management | [GetX](https://pub.dev/packages/get) |
+| Auth & Database | [Firebase Auth](https://firebase.google.com/products/auth) + [Cloud Firestore](https://firebase.google.com/products/firestore) |
+| File Storage | [Firebase Storage](https://firebase.google.com/products/storage) + [Supabase](https://supabase.com) |
+| AI / ML | [Google ML Kit Image Labeling](https://developers.google.com/ml-kit/vision/image-labeling) |
+| Media | [image_picker](https://pub.dev/packages/image_picker) · [video_player](https://pub.dev/packages/video_player) |
+| Caching | [cached_network_image](https://pub.dev/packages/cached_network_image) |
+
+---
+
+## Screenshots
+
+| AI Validation | Product Detail | Checkout |
+|:---:|:---:|:---:|
+| ![AI filter](https://github.com/user-attachments/assets/2bb70e80-af5b-4818-822e-7f4f375deb42) | ![Detail](https://github.com/user-attachments/assets/b1160c66-093b-425f-8da6-3d93a87cce10) | ![Checkout](https://github.com/user-attachments/assets/964f5146-85ae-4219-8248-b47ac48373fc) |
+
+| Wishlist | Profile |
+|:---:|:---:|
+| ![Wishlist](https://github.com/user-attachments/assets/24f0c15a-2669-41a9-bace-470df0e3215f) | ![Profile](https://github.com/user-attachments/assets/186a75d7-9361-44d8-a07d-d68df1b5c553) |
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- [Flutter SDK](https://docs.flutter.dev/get-started/install) >= 3.7
+- [Firebase CLI](https://firebase.google.com/docs/cli) configured for the project
+- Android SDK or Xcode (for iOS builds)
+
+### Installation
+
+```bash
+git clone https://github.com/UnripePlum/banana.git
+cd banana
+flutter pub get
+flutter run
+```
+
+> [!IMPORTANT]
+> This app requires a Firebase project with Auth, Firestore, and Storage enabled. `firebase_options.dart` and `google-services.json` / `GoogleService-Info.plist` are not included. Run `flutterfire configure` against your own Firebase project to generate them.
+
+### Download APK
+
+A pre-built Android APK is available on [Google Drive](https://drive.google.com/file/d/1n4rfwgsRB4VU2vwcM1BsFHFFxoXC_52x/view?usp=share_link).
+
+---
+
+## How It Works
+
+```
+Seller uploads images + tags
+        │
+        ▼
+Google ML Kit analyzes each image
+(confidence threshold: 0.5)
+        │
+        ▼
+Detected labels compared to seller tags
+        │
+      ┌─┴──────────────────┐
+   Match                No match
+      │                    │
+      ▼                    ▼
+Listing created      Submission blocked
+  in Firestore        with error message
+```
+
+---
+
+## Team
+
+Built in one week at [MadCamp](https://madcamp.io) (Winter 2024/2025).
+
+| Name | Affiliation |
+|---|---|
+| 박기람 | Hanyang University, Information Systems '22 |
+| 김한준 | KAIST, School of Computing '21 |
+
+---
+
+## License
+
+No license file is included. All rights reserved by the authors unless otherwise stated.
